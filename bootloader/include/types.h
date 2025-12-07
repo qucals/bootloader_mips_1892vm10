@@ -1,26 +1,46 @@
 #ifndef _TYPES_H_
 #define _TYPES_H_
 
-#include <limits.h>
-#include <stdint.h>
+// Типы данных
+typedef unsigned char  u8;
+typedef unsigned short u16;
+typedef unsigned int   u32;
+typedef unsigned long  u64;
 
-typedef uint8_t  u8;
-typedef uint16_t u16;
-typedef uint32_t u32;
-typedef uint64_t u64;
+typedef signed char  i8;
+typedef signed short i16;
+typedef signed int   i32;
+typedef signed long  i64;
 
-typedef int8_t  i8;
-typedef int16_t i16;
-typedef int32_t i32;
-typedef int64_t i64;
+typedef u32 uintptr;
+typedef u32 usize;
 
-typedef uintptr_t uintptr;
+typedef volatile u8  reg8_t;
+typedef volatile u16 reg16_t;
+typedef volatile u32 reg32_t;
 
-typedef uintptr vhys_addr_t;
-typedef uintptr phys_addr_t;
+typedef u8 boolean;
+#define FALSE 0
+#define TRUE  1
 
-typedef void* vptr;
+#define vptr void *
 
-typedef void (*fn_ptr)();
+#define NULL 0
+
+// Битовые операции
+#define BIT(n) (1U << (n))
+
+#define BIT_SET(reg, bit) ((reg) |= BIT(bit))
+#define BIT_CLR(reg, bit) ((reg) &= ~BIT(bit))
+#define BIT_TGL(reg, bit) ((reg) ^= BIT(bit))
+#define BIT_GET(reg, bit) (((reg) >> (bit)) & 1U)
+
+// Доступ к регистрам по адресу
+#define REG8(addr)  (*(volatile u8 *)(addr))
+#define REG16(addr) (*(volatile u16 *)(addr))
+#define REG32(addr) (*(volatile u32 *)(addr))
+#define REG(addr)   REG32(addr)
+
+#define LINKER_VAR(name) extern u8 name[]
 
 #endif  // _TYPES_H_

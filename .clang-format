@@ -24,7 +24,7 @@ BinPackArguments: 'true'
 BinPackParameters: 'true'
 BreakBeforeBinaryOperators: All
 BreakBeforeBraces: Stroustrup
-PointerAlignment: Left
+PointerAlignment: Right
 ReflowComments: 'true'
 SortIncludes: 'true'
 Standard: Auto
